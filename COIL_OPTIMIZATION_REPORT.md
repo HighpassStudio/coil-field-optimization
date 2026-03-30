@@ -9,11 +9,11 @@
 
 ## Problem Statement
 
-Standard Helmholtz coil pairs are the default for producing uniform magnetic fields in lab settings. But no published work defines a single composite metric for **field uniformity per watt of resistive dissipation**, and no systematic comparison exists across coil geometries (circular, conical, elliptical, racetrack, multi-coil) evaluated on a power-normalized basis.
+Optimizing coil geometries for field uniformity under power and thermal constraints is a well-studied problem, with published work spanning decades (Lee-Whiting 1957, Merritt 1983, Zhu 2022 multi-objective optimization, Nieves 2019 conical coils). This project does not claim to fill a major gap in the literature.
 
-This matters for battery-powered NMR, atomic sensors, bioelectromagnetics, and any application where coil heating is a constraint.
+What this project does: build an accessible, open-source tool that applies a practical composite metric (field uniformity per watt) across multiple coil geometries, with the explicit goal of physical bench validation. The value is in reproducibility and accessibility, not novelty of the underlying physics.
 
-**Research question:** Given a power budget and a target volume, which coil geometry maximizes field uniformity?
+**Practical question:** Given a power budget and a target volume, which standard coil geometry performs best -- and can a simple home-lab setup validate the simulation?
 
 ---
 
@@ -168,9 +168,9 @@ Sorted by figure of merit (best first):
 
 ## What would change my conclusions
 
-- If a proper conical coil implementation (per Nieves 2019) scores FoM > 1092, Helmholtz is dethroned.
-- If optimizing separation + radius + turns + cone angle jointly finds a configuration with FoM > 1200, there is a publishable result.
-- If the FoM ranking is unstable across different target volume sizes, the metric needs modification.
+- If a proper conical coil implementation (per Nieves 2019) scores FoM > 1092, it would be worth investigating further. The current naive implementation does not faithfully reproduce the Nieves geometry and cannot be used to draw conclusions about conical coils.
+- If the FoM ranking is unstable across different target volume sizes, the metric needs modification. (Partially addressed in extended_analysis.py -- Lee-Whiting outperforms Helmholtz for tall volumes, as expected from its higher-order gradient cancellation.)
+- If bench measurements disagree with simulation by >15%, the model has unaddressed systematic errors that must be resolved before any geometry comparison is meaningful.
 
 ---
 
@@ -185,7 +185,7 @@ Sorted by figure of merit (best first):
 ## References
 
 1. Lee-Whiting, "Uniform Magnetic Fields," AECL CRT-673 (1957). [OSTI](https://www.osti.gov/servlets/purl/4156720)
-2. Merritt, Purcell & Stroink, Rev. Sci. Instrum. 54(7), 879-882 (1983). DOI: [10.1063/1.1137480](https://doi.org/10.1063/1.1137480)
+2. Merritt, Purcell & Stroink, Rev. Sci. Instrum. 54(7), 879-882 (1983). DOI: [10.1063/1.1137480](https://doi.org/10.1063/1.1137480) -- *Note: this paper covers square coil systems, not circular. Cited here for the multi-coil uniform field design methodology, not as direct validation of the circular-coil comparisons in this report.*
 3. Nieves et al., Rev. Sci. Instrum. 90(4), 045120 (2019). DOI: [10.1063/1.5079476](https://doi.org/10.1063/1.5079476)
 4. Zhu et al., IET Electric Power Applications (2022). DOI: [10.1049/elp2.12188](https://doi.org/10.1049/elp2.12188)
 5. Restrepo-Alvarez et al., IEEE (2021). [IEEE 9479781](https://ieeexplore.ieee.org/document/9479781/)
