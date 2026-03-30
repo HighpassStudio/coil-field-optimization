@@ -16,9 +16,10 @@
 | 3D printed coil forms | 5 cm radius, 2 needed | Print yourself or order | $2-5 filament |
 | Ruler / calipers | For positioning | Existing | $0 |
 | Jumper wires, breadboard | Sensor hookup | Existing or $5 | $0-5 |
-| Wooden or plastic rail | Sensor positioning guide | Scrap / dollar store | $0-3 |
+| ADS1115 16-bit ADC module | Required -- Arduino 10-bit is inadequate | Amazon | $3-5 |
+| Calipers or printed slide | Sensor positioning (+/- 0.5 mm) | Existing or Amazon | $0-15 |
 
-**Total: $40-75** (less if you have a power supply and Arduino)
+**Total: $45-90** (less if you have a power supply and Arduino)
 
 ---
 
@@ -61,28 +62,57 @@ OR: wind on any 100 mm diameter cylinder (PVC pipe, jar, etc.)
 - Quiescent voltage: ~2.5V (at 5V supply)
 - Sensitivity: adequate for expected field range (170-570 uT)
 
-### Arduino ADC
+### ADC -- Use ADS1115 (Required)
 
-- 10-bit ADC: 4.88 mV/count on 5V reference
-- At 1 mV/Gauss, that's ~4.88 Gauss per count -- marginal resolution
-- **Improvement:** Use Arduino analogReference(INTERNAL) for 1.1V reference
-  - Resolution: 1.07 mV/count -- much better
-  - OR: use ADS1115 external 16-bit ADC ($3 module) for 0.125 mV resolution
+The Arduino's built-in 10-bit ADC is inadequate. At 4.88 mV/count on a 5V
+reference, the ~5 mV signal from 3.6 Gauss is barely 1 count. Even with
+the internal 1.1V reference (1.07 mV/count), resolution is marginal for
+detecting the small variations between separation configurations.
 
-### Wiring
+**Use an ADS1115 16-bit ADC module ($3-5):**
+- Resolution: 0.125 mV/count at +/-4.096V gain
+- At +/-0.256V gain: 0.0078 mV/count -- more than enough
+- I2C interface, trivial Arduino library (Adafruit_ADS1X15)
+- This is not optional -- the 10-bit ADC will produce noisy garbage
+
+### Averaging
+
+Take **100 samples per measurement point** and report the mean.
+This reduces random noise by 10x (sqrt(100)).
+Record the standard deviation of the 100 samples as your per-point
+noise estimate. If std_dev > 5% of mean signal, investigate EMI sources.
+
+### Wiring (ADS1115)
 
 ```
-SS49E pin 1 (Vcc)  -> Arduino 5V
-SS49E pin 2 (GND)  -> Arduino GND
-SS49E pin 3 (Out)  -> Arduino A0
+ADS1115 VDD   -> Arduino 5V
+ADS1115 GND   -> Arduino GND
+ADS1115 SCL   -> Arduino A5 (SCL)
+ADS1115 SDA   -> Arduino A4 (SDA)
+ADS1115 A0    -> SS49E pin 3 (Out)
+SS49E pin 1   -> Arduino 5V
+SS49E pin 2   -> Arduino GND
 ```
 
 ### Calibration
 
-The SS49E sensitivity varies unit to unit (~0.8-1.2 mV/G).
+The SS49E sensitivity varies unit to unit (~1.0-1.75 mV/G, typically ~1.4 mV/G).
 Calibrate against a known field or use relative measurements only.
 For this test, **relative measurements (B/B_center) are sufficient**
 to validate profile shape and separation comparison.
+
+### Known Systematics
+
+- **Earth's field (~0.5 G):** Subtract zero-current baseline reading at each
+  position. Earth's field is ~uniform over the coil volume, so it shifts all
+  readings by a constant offset that cancels in normalization.
+- **Sensor self-heating:** SS49E dissipates ~15 mW. Allow 30 seconds thermal
+  stabilization before recording.
+- **EMI from power supply:** Use a linear bench supply in CC mode, not a
+  switching supply. Keep sensor wires short and away from coil leads.
+- **Coil symmetry:** If possible, measure each coil individually (disconnect
+  one) to verify they produce similar center fields. Mismatch > 5% indicates
+  a winding error.
 
 ---
 
