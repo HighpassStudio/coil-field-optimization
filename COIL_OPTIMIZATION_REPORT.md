@@ -184,13 +184,19 @@ Sorted by figure of merit (best first):
 
 ## References
 
-1. Lee-Whiting, "Uniform Magnetic Fields," AECL CRT-673 (1957). [OSTI](https://www.osti.gov/servlets/purl/4156720)
-2. Merritt, Purcell & Stroink, Rev. Sci. Instrum. 54(7), 879-882 (1983). DOI: [10.1063/1.1137480](https://doi.org/10.1063/1.1137480) -- *Note: this paper covers square coil systems, not circular. Cited here for the multi-coil uniform field design methodology, not as direct validation of the circular-coil comparisons in this report.*
-3. Nieves et al., Rev. Sci. Instrum. 90(4), 045120 (2019). DOI: [10.1063/1.5079476](https://doi.org/10.1063/1.5079476)
-4. Zhu et al., IET Electric Power Applications (2022). DOI: [10.1049/elp2.12188](https://doi.org/10.1049/elp2.12188)
-5. Restrepo-Alvarez et al., IEEE (2021). [IEEE 9479781](https://ieeexplore.ieee.org/document/9479781/)
-6. Bidinosti et al., IEEE Trans. Instrum. Meas. 72 (2023). [arXiv:2305.00572](https://arxiv.org/abs/2305.00572)
-7. Salazar et al., Rev. Sci. Instrum. 88(9), 095107 (2017). DOI: [10.1063/1.5002572](https://doi.org/10.1063/1.5002572)
+1. G. E. Lee-Whiting, "Uniform Magnetic Fields," Atomic Energy of Canada Ltd., Chalk River, ON, Canada, Tech. Rep. AECL-419 (CRT-673), 1957. Available: [https://www.osti.gov/biblio/4156720](https://www.osti.gov/biblio/4156720)
+
+2. R. Merritt, C. Purcell, and G. Stroink, "Uniform magnetic field produced by three, four, and five square coils," *Rev. Sci. Instrum.*, vol. 54, no. 7, pp. 879--882, 1983. DOI: [10.1063/1.1137480](https://doi.org/10.1063/1.1137480) -- *Note: this paper covers square coil systems, not circular. Cited here for the multi-coil uniform field design methodology, not as direct validation of the circular-coil comparisons in this report.*
+
+3. F. J. Nieves, A. Bayon, and F. Gascon, "Optimization of the magnetic field homogeneity of circular and conical coil pairs," *Rev. Sci. Instrum.*, vol. 90, no. 4, 045120, 2019. DOI: [10.1063/1.5079476](https://doi.org/10.1063/1.5079476)
+
+4. B. Zhu, Y. Lu, Y. Yang, M. Zhang, and L. Jiang, "Multi-objective optimization design of the large-scale high-intensity homogeneous magnetic field coil system based on non-dominated sorting genetic algorithm (NSGA-II)," *IET Electr. Power Appl.*, vol. 16, no. 6, pp. 710--722, 2022. DOI: [10.1049/elp2.12188](https://doi.org/10.1049/elp2.12188)
+
+5. Y. Lu, Y. Yang, M. Zhang, B. Zhu, and L. Jiang, "Improved square-coil configurations for homogeneous magnetic field generation," *IEEE Trans. Ind. Electron.*, vol. 69, no. 6, pp. 6350--6360, 2022. DOI: [10.1109/TIE.2021.3090702](https://doi.org/10.1109/TIE.2021.3090702) -- *Note: previously misattributed to Restrepo-Alvarez et al. in an earlier version of this report. Corrected after DOI verification.*
+
+6. P. J. Hobson, N. L. Hardwicke, A. Davis, T. Smith, C. Morley, M. Packer, N. Holmes, M. A. Sheridan, M. Brookes, R. Bowtell, and M. Fromhold, "Designing optimal loop, saddle, and ellipse-based magnetic coils by spherical harmonic mapping," *IEEE Trans. Instrum. Meas.*, vol. 72, 1005815, pp. 1--15, 2023. DOI: [10.1109/TIM.2023.3284138](https://doi.org/10.1109/TIM.2023.3284138) -- *Note: previously misattributed to Bidinosti et al. in an earlier version of this report. Corrected after DOI verification. Also available: [arXiv:2305.00572](https://arxiv.org/abs/2305.00572)*
+
+7. F. J. Salazar, F. J. Nieves, A. Bayon, and F. Gascon, "Magnetic field homogeneity of a conical coaxial coil pair," *Rev. Sci. Instrum.*, vol. 88, no. 9, 095107, 2017. DOI: [10.1063/1.5002572](https://doi.org/10.1063/1.5002572)
 
 ---
 
